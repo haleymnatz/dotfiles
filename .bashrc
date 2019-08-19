@@ -87,6 +87,9 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# Change color of terminal prompt
+export PS1="\[\033[38;5;208m\]\w \\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -108,7 +111,8 @@ fi
 # git aliases
 alias ga='git add'
 alias gap='git add -p'
-alias gco='git checkout'
+# alias gco='git checkout'
+alias gco='git find-branch $@'
 alias gpo='git pull origin $(bn)'
 alias gs='git status'
 alias gb='git branch'
@@ -123,11 +127,14 @@ __git_complete gb _git_branch
 __git_complete gp _git_pull
 
 # terminal aliases
-alias lessonly='cd Documents/lessonly/lessonly'
+alias lessonly='cd ~/Documents/lessonly'
 alias nmres='sudo service network-manager restart'
 alias esres='sudo service elasticsearch restart'
-alias rails_secure="rails s -b 'ssl://dev.lvh.me:3000?key=lvh.me.key&cert=lvh.me.crt'"
+# alias rails_secure="rails s -b 'ssl://dev.lvh.me:3000?key=lvh.me.key&cert=lvh.me.crt'"
+alias rails_secure="rails s -b 'ssl://dev.lvh.me:3000?key=server.key&cert=server.crt'"
 alias be='bundle exec'
+alias dnsmasq='/etc/init.d/dnsmasq'
+alias kill-rails='sudo kill -9 $(lsof -i :3000 -t)'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -140,6 +147,19 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Set vim as default editor
+export VISUAL="vim"
+export EDITOR="$VISUAL"
+
+# Set path for yarn
+export PATH="$PATH:/opt/yarn-[version]/bin"
+# Use yarn globally
+export PATH="$PATH:`yarn global bin`"
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
