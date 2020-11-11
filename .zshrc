@@ -1,8 +1,8 @@
-# If you come from bash you might have to change your $PATH.
+
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/haleymnatzaganian/.oh-my-zsh"
+export ZSH="/Users/hmnatzaganian/.oh-my-zsh"
 
 # This line bypasses an issue with fork safety to allow rails console to work
 export DISABLE_SPRING=true
@@ -11,13 +11,15 @@ export DISABLE_SPRING=true
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "amuse", "avit", "gnzh", "intheloop", "jispwoso",
+# "jonathan", "murilasso", "refined", "rgm", "rkj-repos", "sporty_256", "steeef",
+# "strug", "terminalparty")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -93,6 +95,12 @@ source $ZSH/oh-my-zsh.sh
 export VISUAL="vim"
 export EDITOR="$VISUAL"
 
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -105,8 +113,8 @@ export EDITOR="$VISUAL"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. /Users/haleymnatzaganian/.asdf/asdf.sh
-. /Users/haleymnatzaganian/.asdf/completions/asdf.bash
+. /Users/hmnatzaganian/.asdf/asdf.sh
+. /Users/hmnatzaganian/.asdf/completions/asdf.bash
 
 # Load Git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
@@ -117,8 +125,8 @@ autoload -Uz compinit && compinit
 # git aliases
 alias ga='git add'
 alias gap='git add -p'
-# alias gco='git checkout'
-alias gco='git find-branch $@'
+alias gco='git checkout'
+alias goto='git find-branch $@'
 alias gpo='git pull origin $(bn)'
 alias gs='git status'
 alias gb='git branch'
@@ -133,7 +141,7 @@ alias gst='git stash'
 [ -f /usr/share/bash-completion/completions/git ] && . /usr/share/bash-completion/completions/git
 
 # terminal aliases
-alias lessonly='cd ~/Documents/lessonly'
+alias lessonly='cd ~/Repositories/lessonly'
 alias nmres='sudo service network-manager restart'
 alias esres='sudo service elasticsearch restart'
 # alias rails_secure="rails s -b 'ssl://dev.lvh.me:3000?key=lvh.me.key&cert=lvh.me.crt'"
